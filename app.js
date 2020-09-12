@@ -1,6 +1,28 @@
-//app.js
+import {
+    WX_BASE_URL_API,
+    WX_BASE_URL_WEBAPP,
+    WX_BASE_URL_TEXT,
+    WX_LOCATION_KEY
+} from "./config/index"
+import {
+    get,
+    post
+} from "./utils/request"
 App({
     onLaunch: function () {
+        // 区分环境
+        const accountInfo = wx.getAccountInfoSync()
+        const envVersion = accountInfo.miniProgram.envVersion
+        let ENV = 'test'
+        wx.$ENV = ENV
+        wx.$ENV_VERSION = envVersion
+        wx.$BASE_URL_TEXT = WX_BASE_URL_TEXT[ENV]
+        wx.$BASE_URL_API = WX_BASE_URL_API[ENV]
+        wx.$BASE_URL_WEBAPP = WX_BASE_URL_WEBAPP[ENV]
+        wx.$LOCATION_KEY = WX_LOCATION_KEY[ENV]
+        // 注入request方法
+        wx.$get = get
+        wx.$post = post
 
         // 登录
         wx.login({
