@@ -1,4 +1,5 @@
 const app = getApp()
+import util from '../../utils/util.js'
 Page({
 
     /**
@@ -7,7 +8,8 @@ Page({
     data: {
         userInfo: {},
         hasUserInfo: false,
-        canIUse: wx.canIUse('button.open-type.getUserInfo')
+        canIUse: wx.canIUse('button.open-type.getUserInfo'),
+        telPhone: ''
     },
 
     /**
@@ -41,7 +43,25 @@ Page({
             })
         }
     },
+    getPhoneNumber(e) {
+        console.log(e)
+        util.getOpenId().then(openId => {
+            let params = {
+                encryptedData: e.detail.encryptedData,
+                iv: e.detail.iv,
+                openid: openId,
+                loginSysName: "APPLETS_HAOFANG"
+            }
 
+            if (e.detail && e.detail.encryptedData) {
+                wx.$post("/user/api/wxDecryptData", params).then(res => {
+                    this.setData({
+                        telPhone: res.phoneNumber
+                    })
+                })
+            }
+        })
+    },
     getUserInfo: function (e) {
         console.log(e)
         app.globalData.userInfo = e.detail.userInfo
@@ -75,27 +95,6 @@ Page({
      * 生命周期函数--监听页面卸载
      */
     onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
 
     }
 })

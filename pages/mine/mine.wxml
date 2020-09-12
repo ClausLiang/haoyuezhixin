@@ -1,6 +1,11 @@
 <view class="userinfo">
-	<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-	<block wx:else>
-		<image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-	</block>
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="avatar">
+        <view class="avatar-text">获取头像</view>
+    </button>
+    <image wx:else class="avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+    <view class="tel">
+        {{telPhone}}
+        <button wx:if="{{!telPhone}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>
+    </view>
+    <view class="moreInfo">点击查看个人信息</view>
 </view>
