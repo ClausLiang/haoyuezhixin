@@ -9,7 +9,7 @@ Page({
         userInfo: {},
         hasUserInfo: false,
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
-        telPhone: ''
+        telPhone: '17610018891'
     },
 
     /**
@@ -43,6 +43,7 @@ Page({
             })
         }
     },
+    // 获取手机号的回调
     getPhoneNumber(e) {
         console.log(e)
         util.getOpenId().then(openId => {
@@ -62,6 +63,7 @@ Page({
             }
         })
     },
+    // 获取用户基本信息的回调
     getUserInfo: function (e) {
         console.log(e)
         app.globalData.userInfo = e.detail.userInfo
