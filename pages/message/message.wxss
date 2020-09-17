@@ -1,1 +1,16 @@
-/* pages/message/message.wxss */
+page {
+    background-color: #f5f5f5;
+}
+
+.calender-wrapper {
+    margin: 20rpx 20rpx 20rpx;
+    overflow: hidden;
+    height: 760rpx;
+    position: relative;
+}
+
+.calendar {
+    position: absolute;
+    top: -100rpx;
+    bottom: 0;
+}

@@ -1,2 +1,3 @@
-<!--pages/message/message.wxml-->
-<text>pages/message/message.wxml</text>
+<view class="calender-wrapper">
+    <van-calendar class="calendar" show="true" poppable="{{false}}" show-confirm="{{false}}"></van-calendar>
+</view>
