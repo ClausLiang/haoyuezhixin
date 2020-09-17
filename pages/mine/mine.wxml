@@ -7,5 +7,5 @@
         {{telPhone}}
         <button wx:if="{{!telPhone}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>
     </view>
-    <view class="moreInfo">点击查看个人信息</view>
+    <view class="moreInfo" bindtap="toMineInfoPage">点击查看个人信息</view>
 </view>
